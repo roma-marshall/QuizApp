@@ -10,34 +10,43 @@
       </div>
       <div class="rounded-lg bg-gray-100 p-2 morph-1 text-center font-bold text-gray-800 mt-8">
         <div class="bg-white p-5">
-          Who is the most powerful...?
+          {{ currentQuestion.question }}
         </div>
       </div>
       <div class="mt-8">
-        <div class="morph-1 bg-gray-100 p-2 rounded-lg mb-3 relative">
-          <div class="bg-blue-700 p-1 transform rotate-45 rounded-md text-white h-10 w-10
+        <div
+            v-for="(choice, item) in currentQuestion.choices"
+            :key="item"
+        >
+          <div
+              class="morph-1 bg-gray-100 p-2 rounded-lg mb-3 relative"
+              @click="onOptionClicked(choice)"
+          >
+            <div class="bg-blue-700 p-1 transform rotate-45 rounded-md text-white h-10 w-10
         fond-bold absolute right-0 top-0 shadow-md">
-            <p class="transform -rotate-45">+10</p>
-          </div>
-          <div class="bg-white rounded-lg font-bold flex p-2">
-            <div class="bg-gray-400 p-3 rounded-lg">A</div>
-            <div class="flex items-center pl-6">Option 1</div>
+              <p class="transform -rotate-45">+10</p>
+            </div>
+            <div class="bg-white rounded-lg font-bold flex p-2">
+              <div class="bg-gray-400 p-3 rounded-lg">{{ item }}</div>
+              <div class="flex items-center pl-6">{{ choice }}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="mt-8 text-center">
-        <div class="h-1 w-12 bg-gray-800 rounded-full mx-auto"></div>
-        <p class="text-gray-800 font-bold">2/10</p>
+        <div class="mt-8 text-center">
+          <div class="h-1 w-12 bg-gray-800 rounded-full mx-auto"></div>
+          <p class="text-gray-800 font-bold">2/10</p>
+        </div>
       </div>
     </div>
   </main>
 </template>
 
 <script>
-import {ref} from 'vue'
+import {ref} from 'vue';
 
 export default {
   setup() {
+    let questionCounter = ref(0)
     const currentQuestion = ref({
       question: '',
       answer: 1,
@@ -60,6 +69,14 @@ export default {
         choices: ['-4', '6', '0', '41']
       },
     ]
+    const onQuizStart = () => {
+      currentQuestion.value = question[questionCounter.value]
+    }
+    const onOptionClicked = (choice) => {
+      console.log(choice)
+    }
+    onQuizStart()
+    return {currentQuestion, question, questionCounter, onQuizStart, onOptionClicked}
   }
 }
 </script>
