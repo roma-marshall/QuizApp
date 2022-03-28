@@ -20,7 +20,7 @@
         >
           <div
               class="morph-1 bg-gray-100 p-2 rounded-lg mb-3 relative"
-              @click="onOptionClicked(choice)"
+              @click="onOptionClicked(choice, item)"
           >
             <div class="bg-blue-700 p-1 transform rotate-45 rounded-md text-white h-10 w-10
         fond-bold absolute right-0 top-0 shadow-md">
@@ -55,25 +55,30 @@ export default {
     const question = [
       {
         question: '2+2',
-        answer: 1,
+        answer: 0,
         choices: ['4', '-1', '0', '10']
       },
       {
         question: '10-5',
-        answer: 2,
+        answer: 1,
         choices: ['-4', '5', '33', '-5']
       },
       {
         question: '3 * 2',
-        answer: 2,
+        answer: 1 ,
         choices: ['-4', '6', '0', '41']
       },
     ]
     const onQuizStart = () => {
       currentQuestion.value = question[questionCounter.value]
     }
-    const onOptionClicked = (choice) => {
-      console.log(choice)
+    const onOptionClicked = (choice, item) => {
+      const optionID = item++
+      if (currentQuestion.value.answer === optionID)
+        console.log('you are correct')
+      else
+        console.log('you are wrong')
+      console.log(choice, item)
     }
     onQuizStart()
     return {currentQuestion, question, questionCounter, onQuizStart, onOptionClicked}
