@@ -37,30 +37,7 @@
 import {ref} from 'vue'
 
 export default {
-  setup() {
-    const currentQuestion = ref({
-      question: '',
-      answer: 1,
-      choices: []
-    })
-    const question = [
-      {
-        question: '2+2',
-        answer: 1,
-        choices: ['4', '-1', '0', '10']
-      },
-      {
-        question: '10-5',
-        answer: 2,
-        choices: ['-4', '5', '33', '-5']
-      },
-      {
-        question: '3 * 2',
-        answer: 2,
-        choices: ['-4', '6', '0', '41']
-      },
-    ]
-  }
+  
 }
 </script>
 
