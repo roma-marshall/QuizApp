@@ -20,14 +20,15 @@
         >
           <div
               class="morph-1 bg-gray-100 p-2 rounded-lg mb-3 relative"
+              :ref="optionChosen"
               @click="onOptionClicked(choice, item)"
           >
-            <div class="bg-blue-700 p-1 transform rotate-45 rounded-md text-white h-10 w-10
-        fond-bold absolute right-0 top-0 shadow-md">
+            <div class="hidden bg-blue-700 p-1 transform rotate-45 rounded-md text-white h-10 w-10
+                fond-bold absolute right-0 top-0 shadow-md">
               <p class="transform -rotate-45">+10</p>
             </div>
             <div class="bg-white rounded-lg font-bold flex p-2">
-              <div class="bg-gray-400 p-3 rounded-lg">{{ item }}</div>
+              <div class="bg-gray-500 px-4 py-2 rounded-lg text-white">{{ item }}</div>
               <div class="flex items-center pl-6">{{ choice }}</div>
             </div>
           </div>
@@ -46,6 +47,7 @@ import {ref} from 'vue';
 
 export default {
   setup() {
+    let itemsRef = []
     let questionCounter = ref(0)
     const currentQuestion = ref({
       question: '',
@@ -65,23 +67,35 @@ export default {
       },
       {
         question: '3 * 2',
-        answer: 1 ,
+        answer: 1,
         choices: ['-4', '6', '0', '41']
       },
     ]
     const onQuizStart = () => {
       currentQuestion.value = question[questionCounter.value]
     }
+    const optionChosen = (el) => {
+      if (el)
+        itemsRef.push(el)
+    }
     const onOptionClicked = (choice, item) => {
+      const divContainer = itemsRef[item]
       const optionID = item++
       if (currentQuestion.value.answer === optionID)
-        console.log('you are correct')
+        divContainer.classList.add('bg-green-400')
       else
-        console.log('you are wrong')
+        divContainer.classList.add('bg-red-400')
       console.log(choice, item)
     }
     onQuizStart()
-    return {currentQuestion, question, questionCounter, onQuizStart, onOptionClicked}
+    return {
+      currentQuestion,
+      question,
+      questionCounter,
+      onQuizStart,
+      onOptionClicked,
+      optionChosen,
+    }
   }
 }
 </script>
