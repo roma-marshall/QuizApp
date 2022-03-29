@@ -81,7 +81,7 @@ export default {
         currentQuestion.value = question[questionCounter.value]
         questionCounter.value++
       } else {
-        console.log('no more questions')
+        alert('no more questions')
       }
     }
     const onQuizStart = () => {
