@@ -67,8 +67,13 @@ export default {
       },
       {
         question: '3 * 2',
-        answer: 1,
-        choices: ['-4', '6', '0', '41']
+        answer: 2,
+        choices: ['-4', '0', '6', '41']
+      },
+      {
+        question: '55 / 5',
+        answer: 3,
+        choices: ['3', '-16', '30', '11']
       },
     ]
     const loadQuestion = () => {
@@ -86,6 +91,13 @@ export default {
       if (el)
         itemsRef.push(el)
     }
+    const clearSelected = (divContainer) => {
+      setTimeout(() => {
+        divContainer.classList.remove('bg-green-400')
+        divContainer.classList.remove('bg-red-400')
+        loadQuestion()
+      }, 1000)
+    }
     const onOptionClicked = (choice, item) => {
       const divContainer = itemsRef[item]
       const optionID = item++
@@ -94,6 +106,7 @@ export default {
       else
         divContainer.classList.add('bg-red-400')
       console.log(choice, item)
+      clearSelected(divContainer)
     }
     onQuizStart()
     return {
