@@ -6,7 +6,11 @@
         <p class="font-bold">{{ score }}</p>
       </div>
       <div class="bg-white shadow-lg p-2 rounded-full w-full h-10">
-        <div class="bg-blue-700 rounded-full w-11/12 h-full"></div>
+        <div
+            class="bg-blue-700 rounded-full h-full"
+            :style="`width: ${timer}%`"
+        >
+        </div>
       </div>
       <div class="rounded-lg bg-gray-100 p-2 morph-1 text-center font-bold text-gray-800 mt-8">
         <div class="bg-white p-5">
@@ -47,6 +51,7 @@ import {ref} from 'vue';
 
 export default {
   setup() {
+    let timer = ref(100)
     let approveClick = true
     let itemsRef = []
     let score = ref(0)
@@ -90,6 +95,11 @@ export default {
       if (question.length !== page.value)
         page.value++
     }
+    const countDownTimer = () => {
+      setInterval(() => {
+        timer.value--
+      }, 150)
+    }
     const onQuizStart = () => {
       currentQuestion.value = question[questionCounter.value]
     }
@@ -118,6 +128,7 @@ export default {
       }
     }
     onQuizStart()
+    countDownTimer()
     return {
       currentQuestion,
       question,
@@ -127,6 +138,7 @@ export default {
       optionChosen,
       score,
       page,
+      timer
     }
   }
 }
