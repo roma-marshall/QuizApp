@@ -35,7 +35,7 @@
         </div>
         <div class="mt-8 text-center">
           <div class="h-1 w-12 bg-gray-800 rounded-full mx-auto"></div>
-          <p class="text-gray-800 font-bold">2/10</p>
+          <p class="text-gray-800 font-bold">{{ page }} / {{ question.length }}</p>
         </div>
       </div>
     </div>
@@ -50,6 +50,7 @@ export default {
     let approveClick = true
     let itemsRef = []
     let score = ref(0)
+    let page = ref(1)
     let questionCounter = ref(0)
     const currentQuestion = ref({
       question: '',
@@ -86,6 +87,8 @@ export default {
       } else {
         alert('no more questions')
       }
+      if (question.length !== page.value)
+        page.value++
     }
     const onQuizStart = () => {
       currentQuestion.value = question[questionCounter.value]
@@ -122,7 +125,8 @@ export default {
       onQuizStart,
       onOptionClicked,
       optionChosen,
-      score
+      score,
+      page,
     }
   }
 }
