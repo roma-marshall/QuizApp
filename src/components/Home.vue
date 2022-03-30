@@ -87,12 +87,10 @@ export default {
     const loadQuestion = () => {
       approveClick = true
       questionCounter.value++
-      if (question.length > questionCounter.value) {
-
+      if (question.length > questionCounter.value)
         currentQuestion.value = question[questionCounter.value]
-      } else {
+      else
         alert('no more questions')
-      }
       if (question.length !== page.value)
         page.value++
     }
