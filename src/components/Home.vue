@@ -79,9 +79,9 @@ export default {
     ]
     const loadQuestion = () => {
       approveClick = true
+      questionCounter.value++
       if (question.length > questionCounter.value) {
         currentQuestion.value = question[questionCounter.value]
-        questionCounter.value++
       } else {
         alert('no more questions')
       }
