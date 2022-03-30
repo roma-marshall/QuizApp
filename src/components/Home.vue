@@ -47,6 +47,7 @@ import {ref} from 'vue';
 
 export default {
   setup() {
+    let approveClick = true
     let itemsRef = []
     let questionCounter = ref(0)
     const currentQuestion = ref({
@@ -77,6 +78,7 @@ export default {
       },
     ]
     const loadQuestion = () => {
+      approveClick = true
       if (question.length > questionCounter.value) {
         currentQuestion.value = question[questionCounter.value]
         questionCounter.value++
@@ -99,14 +101,16 @@ export default {
       }, 1000)
     }
     const onOptionClicked = (choice, item) => {
-      const divContainer = itemsRef[item]
-      const optionID = item++
-      if (currentQuestion.value.answer === optionID)
-        divContainer.classList.add('bg-green-400')
-      else
-        divContainer.classList.add('bg-red-400')
-      console.log(choice, item)
-      clearSelected(divContainer)
+      if (approveClick) {
+        const divContainer = itemsRef[item]
+        const optionID = item++
+        if (currentQuestion.value.answer === optionID)
+          divContainer.classList.add('bg-green-400')
+        else
+          divContainer.classList.add('bg-red-400')
+        clearSelected(divContainer)
+        approveClick = false
+      }
     }
     onQuizStart()
     return {
