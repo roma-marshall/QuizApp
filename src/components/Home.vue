@@ -88,6 +88,7 @@ export default {
       approveClick = true
       questionCounter.value++
       if (question.length > questionCounter.value) {
+
         currentQuestion.value = question[questionCounter.value]
       } else {
         alert('no more questions')
@@ -101,7 +102,7 @@ export default {
           timer.value--
         else
           clearInterval(interval)
-      }, 150)
+      }, 100)
     }
     const onQuizStart = () => {
       currentQuestion.value = question[questionCounter.value]
@@ -122,10 +123,15 @@ export default {
         const divContainer = itemsRef[item]
         const optionID = item++
         score.value = score.value + 10
-        if (currentQuestion.value.answer === optionID)
+        if (currentQuestion.value.answer === optionID) {
           divContainer.classList.add('bg-green-400')
-        else
+          if (timer.value + 10 <= 100)
+            timer.value += 10
+          else
+            timer.value = 100
+        } else {
           divContainer.classList.add('bg-red-400')
+        }
         clearSelected(divContainer)
         approveClick = false
       }
