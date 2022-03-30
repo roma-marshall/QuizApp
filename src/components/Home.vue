@@ -3,7 +3,7 @@
     <div class="bg-white container mx-auto shadow-lg rounded-lg px-12 py-6">
       <div class="text-right text-gray-800">
         <p class="text-sm leading-3">Score</p>
-        <p class="font-bold">60</p>
+        <p class="font-bold">{{ score }}</p>
       </div>
       <div class="bg-white shadow-lg p-2 rounded-full w-full h-10">
         <div class="bg-blue-700 rounded-full w-11/12 h-full"></div>
@@ -49,6 +49,7 @@ export default {
   setup() {
     let approveClick = true
     let itemsRef = []
+    let score = ref(0)
     let questionCounter = ref(0)
     const currentQuestion = ref({
       question: '',
@@ -104,6 +105,7 @@ export default {
       if (approveClick) {
         const divContainer = itemsRef[item]
         const optionID = item++
+        score.value = score.value + 10
         if (currentQuestion.value.answer === optionID)
           divContainer.classList.add('bg-green-400')
         else
@@ -120,6 +122,7 @@ export default {
       onQuizStart,
       onOptionClicked,
       optionChosen,
+      score
     }
   }
 }
