@@ -96,8 +96,11 @@ export default {
         page.value++
     }
     const countDownTimer = () => {
-      setInterval(() => {
-        timer.value--
+      let interval = setInterval(() => {
+        if (timer.value > 0)
+          timer.value--
+        else
+          clearInterval(interval)
       }, 150)
     }
     const onQuizStart = () => {
