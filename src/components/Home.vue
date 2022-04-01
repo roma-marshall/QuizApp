@@ -1,6 +1,8 @@
 <template>
   <main class="flex h-screen justify-center">
-    <CompleteOverlay />
+    <CompleteOverlay
+        v-if="quizDone"
+    />
     <div class="bg-white container mx-auto shadow-lg rounded-lg px-12 py-6">
       <div class="text-right text-gray-800">
         <p class="text-sm leading-3">Score</p>
@@ -58,6 +60,7 @@ export default {
     let itemsRef = []
     let score = ref(0)
     let page = ref(1)
+    let quizDone = ref(false)
     let questionCounter = ref(0)
     const currentQuestion = ref({
       question: '',
@@ -149,7 +152,8 @@ export default {
       optionChosen,
       score,
       page,
-      timer
+      timer,
+      quizDone
     }
   },
   components: {
