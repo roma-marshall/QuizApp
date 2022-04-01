@@ -1,6 +1,6 @@
 <template>
   <main class="flex h-screen justify-center">
-
+    <CompleteOverlay />
     <div class="bg-white container mx-auto shadow-lg rounded-lg px-12 py-6">
       <div class="text-right text-gray-800">
         <p class="text-sm leading-3">Score</p>
@@ -49,7 +49,7 @@
 
 <script>
 import {ref, onMounted} from 'vue';
-import CompleteOverlay from './CompleteOverlay'
+import CompleteOverlay from './CompleteOverlay.vue';
 
 export default {
   setup() {
@@ -151,6 +151,9 @@ export default {
       page,
       timer
     }
+  },
+  components: {
+    CompleteOverlay
   }
 }
 </script>
