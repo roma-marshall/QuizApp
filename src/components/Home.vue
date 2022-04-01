@@ -1,5 +1,6 @@
 <template>
   <main class="flex h-screen justify-center">
+
     <div class="bg-white container mx-auto shadow-lg rounded-lg px-12 py-6">
       <div class="text-right text-gray-800">
         <p class="text-sm leading-3">Score</p>
@@ -47,7 +48,7 @@
 </template>
 
 <script>
-import {ref} from 'vue';
+import {ref, onMounted} from 'vue';
 
 export default {
   setup() {
@@ -134,8 +135,10 @@ export default {
         approveClick = false
       }
     }
-    onQuizStart()
-    countDownTimer()
+    onMounted(() => {
+      onQuizStart()
+      countDownTimer()
+    })
     return {
       currentQuestion,
       question,
