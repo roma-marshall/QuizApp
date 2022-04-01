@@ -94,14 +94,16 @@ export default {
       questionCounter.value++
       if (question.length > questionCounter.value)
         currentQuestion.value = question[questionCounter.value]
-      else
-        alert('no more questions')
+      else {
+        quizDone.value = true
+        timer.value = 100
+      }
       if (question.length !== page.value)
         page.value++
     }
     const countDownTimer = () => {
       let interval = setInterval(() => {
-        if (timer.value > 0)
+        if (timer.value > 0 && quizDone.value === false)
           timer.value--
         else
           clearInterval(interval)
@@ -125,8 +127,8 @@ export default {
       if (approveClick) {
         const divContainer = itemsRef[item]
         const optionID = item++
-        score.value = score.value + 10
         if (currentQuestion.value.answer === optionID) {
+          score.value = score.value + 10
           divContainer.classList.add('bg-green-400')
           if (timer.value + 10 <= 100)
             timer.value += 10
