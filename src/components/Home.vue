@@ -49,6 +49,7 @@
 
 <script>
 import {ref, onMounted} from 'vue';
+import CompleteOverlay from './CompleteOverlay'
 
 export default {
   setup() {
