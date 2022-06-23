@@ -30,10 +30,6 @@
               :ref="optionChosen"
               @click="onOptionClicked(choice, item)"
           >
-            <!--            <div class="bg-blue-700 p-1 transform rotate-45 rounded-md text-white h-10 w-10-->
-            <!--                fond-bold absolute right-0 top-0 shadow-md">-->
-            <!--              <p class="transform -rotate-45">+10</p>-->
-            <!--            </div>-->
             <div class="bg-white rounded-lg font-bold flex p-2">
               <div class="bg-gray-500 px-4 py-2 rounded-lg text-white">{{ item }}</div>
               <div class="flex items-center pl-6">{{ choice }}</div>
